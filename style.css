@@ -31,12 +31,12 @@ body{
 .wrapper{
   display: flex;
 }
-.wrapper button{
+ul button{
   background-color:#DCEADC;
   color: #114C11;
   border-radius: 10px;
 }
-.wrapper button:hover{
+ul button:hover{
   background-color:#114C11;
   color: #DCEADC;
 }
