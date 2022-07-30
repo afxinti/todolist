@@ -22,18 +22,20 @@ function inputLength() {
 	return input.value.length;
 }
 
-//create li element based on input and a delete button 
+//create div to enclose: li element based on input and delete button 
 function createListElement(a) {
+	var div = document.createElement('div');
 	var li= document.createElement("li");
-	li.appendChild(document.createTextNode(input.value));
-	ul.appendChild(li);
-	input.value = "";
 	var btn= document.createElement("button");
+	li.appendChild(document.createTextNode(input.value));
+	div.classList.add('wrapper');
+	ul.appendChild(div);
+	div.append(li, btn);  // append not appendChild:  https://dev.to/ibn_abubakre/append-vs-appendchild-a4m 
+	input.value = "";
 	btn.innerHTML = "delete";
-	ul.appendChild(btn);
 	shoppingItems = document.querySelectorAll('li');
 	del = document.querySelectorAll('ul button');
-	loopForNewList(a);
+	loopForNewList();
 	
 }
 //on click create an element on the list with argument a created variable for the two matrix (shoppinglist and del)
@@ -57,13 +59,13 @@ button.addEventListener("click", addListAfterClick);
 input.addEventListener("keypress", addListAfterKeypress);
 
 //on list items on click change state (done/not done)
-function loopForNewList(i) {
-	// for (let i=0; i< shoppingItems.length; i++){
+function loopForNewList() {
+	for (let i=0; i< shoppingItems.length; i++){
 		shoppingItems[i].addEventListener('click',function(){
 			shoppingItems[i].classList.toggle('done');
 		});
-		del[i].addEventListener('click',function(e){
-			del[i].closest('li').remove();
+		del[i].addEventListener('click',function(){
+			del[i].parentElement.remove();
 		})
-	// }
+	}
 }
